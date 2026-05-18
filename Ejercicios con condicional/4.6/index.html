@@ -19,42 +19,34 @@
     /* Permite definir cómo se ve la web "por defecto" antes de empezar a poner clases. */
 
     @layer base {
-      /* Agregar estilo de párrafo para todo el documento */
-     
-      
-       button{
-@apply border bg-blue-500 text-white p-3 mt-4;
+  button {
+    @apply border bg-blue-500 text-white p-3 mt-4 rounded-lg w-full sm:w-auto;
+  }
 
-    }
-  input{
-@apply border;
+  input {
+    @apply border;
+  }
 
-    }
-      body{
-       
-@apply mx-auto w-6/12 text-center bg-cyan-900 mt-40 text-white;
+  body {
+    @apply bg-cyan-900 text-white flex justify-center items-center min-h-screen px-4;
+  }
 
-    }
-    }
-   
-    /* @layer components: Se usa para crear clases complejas reutilizables */
-    /* Se usa cuando se está repitiendo EXACTAMENTE las mismas 10 clases en muchos componentes (por ejemplo botones), para crear una clase propia. */
+  body > div {
+    @apply bg-black p-6 sm:p-10 rounded-3xl w-full max-w-md sm:max-w-2xl;
+  }
 
-    @layer components {
-      .btn-principal {
-        @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition;
-      }
-    }
+  select {
+    @apply text-black border bg-white w-full sm:w-auto mb-4;
+  }
 
-    /* @layer utilities: 
-    Es la capa de clases de un solo propósito y máxima prioridad, incluso por encima de lo que diga la capa base o de componentes. */
+  label {
+    @apply mr-4 text-sm sm:text-base;
+  }
 
-    @layer utilities {
-      .rotate-45-extra {
-        transform: rotate(45deg);
-      }
-    }
-
+  p {
+    @apply mt-4 text-sm sm:text-lg;
+  }
+}
   </style>
 </head>
 <body><div class="bg-black p-10 rounded-3xl">
