@@ -64,10 +64,10 @@
 <input type="number" id="numero2"  >
 
 <select class="bg-blue-600" name="calculadora" id="calcula">
-   <option value="1" >suma</option>
-    <option value="2" >resta</option>
-    <option value="3" >multiplicacion</option>
-    <option value="4">division</option>
+   <option >suma</option>
+    <option  >resta</option>
+    <option  >multiplicacion</option>
+    <option >division</option>
 </select> 
 </form>
  
@@ -85,26 +85,26 @@ const PARRAFO = document.getElementById("parrafo");
 
 function resultado(){
     let sumar =Number(NUMERO1.value);
-let sumar2 = Number(NUMERO1.value);
-let calculador = Number(CALCULA.value);
+let sumar2 = Number(NUMERO2.value);
+let calculador = CALCULA.value;
 
 
- if( calculador === 1){
+ if( calculador === "suma"){
   PARRAFO.innerHTML = sumar + sumar2;
 
  }
  
- if( calculador === 2){
+else if( calculador === "resta"){
   PARRAFO.innerHTML = sumar - sumar2;
 
  }
  
- if( calculador === 3){
+else if( calculador === "multiplicacion"){
   PARRAFO.innerHTML = sumar * sumar2;
 
  }
  
- if( calculador === 4){
+else if( calculador === "division"){
   PARRAFO.innerHTML = sumar / sumar2;
 
  }
