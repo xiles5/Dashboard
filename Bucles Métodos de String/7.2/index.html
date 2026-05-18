@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>7.2</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style type="text/tailwindcss">
+@import "tailwindcss";
+
+@layer base {
+
+  body{
+    @apply min-h-screen bg-cyan-900 flex items-center justify-center p-4;
+  }
+
+  button{
+    @apply bg-blue-500 hover:bg-blue-600 transition
+    text-white px-6 py-3 rounded-xl shadow-lg
+    text-lg font-bold;
+  }
+
+  p{
+    @apply text-white text-base md:text-lg break-words;
+  }
+
+}
+
+@layer components {
+
+  .card{
+    @apply bg-black w-full max-w-2xl
+    rounded-3xl p-6 md:p-10
+    shadow-2xl text-center;
+  }
+
+  .titulo{
+    @apply text-3xl md:text-5xl
+    font-bold text-white mb-6;
+  }
+
+  .resultado-box{
+    @apply mt-6 bg-cyan-950 border border-cyan-700
+    rounded-2xl p-4 max-h-72 overflow-y-auto;
+  }
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1 class="titulo">
+Números descendentes
+</h1>
+
+<button type="button" onclick="descen()">
+Mostrar números
+</button>
+
+<div class="resultado-box">
+<p id="resultado"></p>
+</div>
+
+</div>
+
+<script>
+
+const RESULTADO = document.getElementById("resultado");
+
+function descen(){
+
+    let operacion = ""; 
+
+    for(let i = 100; i >= 0 ; i -= 2){
+
+        operacion += i;
+
+        if(i > 0){
+            operacion += " - ";
+        }
+    }
+
+    RESULTADO.innerHTML = operacion;
+}
+
+</script>
+
+</body>
+</html>

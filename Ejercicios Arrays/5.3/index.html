@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3
+
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen  bg-cyan-900 text-white  from-cyan-900 via-blue-900 to-indigo-950 flex items-center justify-center p-6">
+
+  <div class="bg-black backdrop-blur-md border border-white/20 p-10 rounded-3xl shadow-2xl w-full max-w-2xl text-center">
+
+    <h1 class="text-5xl font-bold mb-8 text-yellow-300 drop-shadow-lg">
+      🛒 Carrito de Compras
+    </h1>
+
+    <div class="flex flex-col gap-5">
+
+      <div>
+        <label for="fruits" class="block mb-2 text-xl font-semibold">
+          Añade al carrito
+        </label>
+
+        <input 
+        class="w-full p-3 rounded-xl border-2 border-cyan-400 bg-white text-black focus:outline-none focus:ring-4 focus:ring-cyan-500 transition"
+        type="text"
+        id="fruits"
+        placeholder="Ejemplo: Manzana">
+      </div>
+
+      <div>
+        <label for="eliminar" class="block mb-2 text-xl font-semibold">
+          Eliminar producto
+        </label>
+
+        <input 
+        class="w-full p-3 rounded-xl border-2 border-red-400 bg-white text-black focus:outline-none focus:ring-4 focus:ring-red-500 transition"
+        type="number"
+        id="eliminar"
+        placeholder="Número del producto">
+      </div>
+
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-4 mt-8">
+
+      <button 
+      class=" bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-2xl font-bold text-lg shadow-lg hover:scale-105 transition"
+      type="button"
+      onclick="resultado()">
+        ➕ Agregar
+      </button>
+
+      <button 
+      class="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-2xl font-bold text-lg shadow-lg hover:scale-105 transition"
+      type="button"
+      onclick="borrar()">
+        🗑️ Eliminar
+      </button>
+
+      <button 
+      class="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-2xl font-bold text-lg shadow-lg hover:scale-105 transition"
+      type="button"
+      onclick="vacio()">
+        ♻️ Vaciar
+      </button>
+
+    </div>
+
+    <div class="bg-white/10 rounded-2xl p-6 mt-8 border border-white/20">
+
+      <p id="resulta" class="text-left text-lg leading-9"></p>
+
+      <p id="otro" class="mt-4 text-cyan-300 font-semibold text-lg"></p>
+
+      <p id="contador" class="mt-2 text-yellow-300 font-bold text-xl"></p>
+
+    </div>
+
+    <img 
+    class="w-52 mx-auto mt-8 drop-shadow-2xl  transition duration-300"
+    src="carrito.avif"
+    alt="carrito">
+
+  </div>
+
+
+    <script>
+    const RESULTA = document.getElementById("resulta");
+    const FRUITS = document.getElementById("fruits");
+    const OTRO = document.getElementById("otro");
+    const CONTADOR = document.getElementById("contador");
+    const ELIMINAR = document.getElementById("eliminar");
+    let frutas = [];
+    let mas = 0;
+
+    function resultado() {
+      let fruits =FRUITS.value.toUpperCase();
+      
+      let busca = frutas.indexOf(fruits);
+
+      if (busca !== -1) {
+        OTRO.innerHTML = "El producto " + fruits+" ya esta en la lista";
+      }
+     else if(busca === -1){
+
+    frutas.push(fruits);
+
+    RESULTA.innerHTML += frutas.length - 1 + ". " + fruits + "<br>";
+
+    console.log(RESULTA.innerHTML);
+
+    OTRO.innerHTML = "El ultimo producto es: " + fruits;
+
+    CONTADOR.innerHTML = "Numero de productos del carrito: " + frutas.length;
+}
+      }
+      
+
+  
+  function borrar(){
+
+    let eliminar = parseInt(ELIMINAR.value);
+
+    frutas.splice(eliminar, 1);
+
+    RESULTA.innerHTML = "";
+
+    for(let i = 0; i < frutas.length; i++){
+
+        RESULTA.innerHTML += i + ". " + frutas[i] + "<br>";
+
+    }
+
+    CONTADOR.innerHTML = "Numero de productos del carrito: " + frutas.length;
+
+}
+
+    function vacio(){
+        frutas=[];
+        RESULTA.innerHTML="";
+        OTRO.innerHTML = "No tienes productos" ;
+      CONTADOR.innerHTML = "Numero de productos del carrito: " + frutas.length;
+    }
+    </script>
+
+</body>
+</html>

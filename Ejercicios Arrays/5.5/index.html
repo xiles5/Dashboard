@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.5</title>
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="mx-auto w-6/12 text-center bg-cyan-900 mt-40 text-white">
+   <div class="bg-black p-10 rounded-3xl">
+    <button class="border bg-blue-500 text-white p-3 mt-4" onclick="mundos()" type="button">Iterar</button>
+     <p id="resultado">
+        
+     </p></div>
+<script>
+const RESULTADO = document.getElementById("resultado");
+let planetas = [
+  "Mercurio",
+  "Venus",
+  "Tierra",
+  "Marte",
+  "Júpiter",
+  "Saturno",
+  "Urano",
+  "Neptuno",
+  "Plutón"
+];
+
+function mundos(){
+for(i=0; i < planetas.length ; i++){
+RESULTADO.innerHTML += planetas[i] + "<br>" ;
+}
+
+
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.1</title>
+       <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    /* layer base: estilos globales y "reseteo" de etiquetas HTML puras */
+    /* Permite definir cómo se ve la web "por defecto" antes de empezar a poner clases. */
+
+    @layer base {
+
+  body {
+    @apply min-h-screen flex flex-col items-center justify-center bg-cyan-900 text-white p-6;
+  }
+
+  h1 {
+    @apply text-3xl font-bold mb-6;
+  }
+
+  img {
+    @apply w-150 h-120 object-cover rounded-xl border-4 border-white shadow-lg;
+  }
+
+  button {
+    @apply bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow transition;
+  }
+
+  p {
+    @apply text-lg;
+  }
+}
+   
+    /* @layer components: Se usa para crear clases complejas reutilizables */
+    /* Se usa cuando se está repitiendo EXACTAMENTE las mismas 10 clases en muchos componentes (por ejemplo botones), para crear una clase propia. */
+
+    @layer components {
+      .btn-principal {
+        @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition;
+      }
+    }
+
+    /* @layer utilities: 
+    Es la capa de clases de un solo propósito y máxima prioridad, incluso por encima de lo que diga la capa base o de componentes. */
+
+    @layer utilities {
+      .rotate-45-extra {
+        transform: rotate(45deg);
+      }
+    }
+
+  </style>
+</head>
+<body><div class="flex bg-black p-7 rounded-md gap-5">
+    <label for="dame">Dame un mes del año:</label>
+    <input type="number" class="border" id="dame" min="1" max="2">
+ <button type="button" onclick="mes()">MES</button>
+    
+<p  id="resultado" class=""></p></div>
+
+ <script>
+
+const meses = [
+{ numeroMes:["",1,2,3,4,5,6,7,8,9,10,11,12], 
+mesLetra: [
+    "",
+  "enero",
+  "febrero",
+  "marzo",
+  "abril",
+  "mayo",
+  "junio",
+  "julio",
+  "agosto",
+  "septiembre",
+  "octubre",
+  "noviembre",
+  "diciembre"
+] ,  numeroDias: [
+    "",
+    31, // enero
+    28, // febrero 
+    31, // marzo
+    30, // abril
+    31, // mayo
+    30, // junio
+    31, // julio
+    31, // agosto
+    30, // septiembre
+    31, // octubre
+    30, // noviembre
+    31  // diciembre
+  ] }
+
+
+]
+const MESES = document.getElementById("dame");
+const PARRAFO = document.getElementById("resultado");
+
+
+function mes(){
+let dame = parseInt(MESES.value);
+
+
+if(dame < 1 || dame >12){
+PARRAFO.innerHTML = "introduce un numero correcto";
+}else{
+
+
+PARRAFO.innerHTML = "El mes " + meses[0].numeroMes[dame] +" se corresponde con "+ meses[0].mesLetra[dame]+" y tiene "+ meses[0].numeroDias[dame]+" dias";
+}
+}
+    
+
+
+
+ </script>
+</body>
+</html>

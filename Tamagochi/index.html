@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamagochi</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style type="text/tailwindcss">
+@import "tailwindcss";
+
+@layer base {
+
+  p {
+    @apply mb-4 leading-relaxed text-white;
+  }
+
+  h1, h2, h3 {
+    @apply font-serif font-bold text-white mb-6;
+  }
+
+  button {
+    @apply border bg-amber-300 hover:bg-amber-700 mt-6 disabled:bg-amber-900 disabled:text-red-500 text-amber-50 rounded-2xl p-4;
+  }
+
+  li {
+    @apply text-white;
+  }
+
+  img {
+    @apply object-cover rounded-3xl;
+  }
+}
+
+@layer components {
+
+  .btn-principal {
+    @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition;
+  }
+}
+
+</style>
+</head>
+
+<body class="bg-amber-950 min-h-screen flex flex-col items-center px-4 py-6">
+
+<h1 class="text-center text-2xl sm:text-3xl md:text-5xl">El increible mundo de gumball</h1>
+
+<ol class="text-sm sm:text-base">
+  <li>Muy bromista</li>
+  <li>Impulsivo</li>
+  <li>Sarcástico</li>
+  <li>Creativo pero a veces irresponsable</li>
+  <li>Le importa mucho su familia y amigos</li>
+</ol>
+
+<!-- CONTENEDOR RESPONSIVO -->
+<div class="flex flex-col md:flex-row items-center justify-center gap-6 w-full max-w-5xl">
+
+  <img
+    id="estados"
+    src="Gumball_Watterson.svg.png"
+    alt="gumball"
+    class="w-40 h-40 sm:w-60 sm:h-60 md:w-80 md:h-80 lg:w-96 lg:h-96"
+  >
+
+  <div class="text-center md:text-left">
+    <p id="felicidad"></p>
+    <p id="salud"></p>
+    <p id="limpieza"></p>
+    <p id="energia"></p>
+    <p id="peso"></p>
+  </div>
+
+</div>
+
+<!-- BOTONES RESPONSIVOS -->
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mt-6 text-center">
+
+  <button id="des1" onclick="duchar()">Duchar</button>
+  <button id="des2" onclick="alimentar()">Alimentar</button>
+  <button id="des3" onclick="jugar()">Jugar</button>
+  <button id="des4" onclick="dormir()">Dormir</button>
+  <button id="des5" onclick="reprender()">Reprender</button>
+  <button id="des6" onclick="acariciar()">Acariciar</button>
+  <button id="des7" onclick="ejercicio()">Ejercicio</button>
+
+</div>
+
+<div class="text-center mt-6">
+  <button id="reiniciar" onclick="volver()" class="bg-blue-600 hover:bg-amber-500">
+    Volver a jugar
+  </button>
+</div>
+
+<script>
+
+const tamagochi = {
+
+    nombre: "gumball",
+    felicidad: 10,
+    salud: 8,
+    limpieza: 9,
+    energia: 5,
+    peso: 2,
+    personalidad: "",
+
+}
+
+const FELICIDAD = document.getElementById("felicidad");
+const SALUD = document.getElementById("salud");
+const LIMPIEZA = document.getElementById("limpieza");
+const ENERGIA = document.getElementById("energia");
+const ESTADOS = document.getElementById("estados");
+const PESO = document.getElementById("peso");
+
+const DES1 = document.getElementById("des1");
+const DES2 = document.getElementById("des2");
+const DES3 = document.getElementById("des3");
+const DES4 = document.getElementById("des4");
+const DES5 = document.getElementById("des5");
+const DES6 = document.getElementById("des6");
+const DES7 = document.getElementById("des7");
+
+FELICIDAD.innerHTML = "Felicidad:" + "😄".repeat(tamagochi.felicidad);
+SALUD.innerHTML = "Salud:" + "❤️".repeat(tamagochi.salud);
+LIMPIEZA.innerHTML = "Limpieza:" + "🧼".repeat(tamagochi.limpieza);
+ENERGIA.innerHTML = "Energia:" + "⚡".repeat(tamagochi.energia);
+PESO.innerHTML = "Peso:" + "🍔".repeat(tamagochi.peso);
+
+
+// ======================
+// DUCHAR
+// ======================
+
+function duchar() {
+
+    tamagochi.limpieza += 2;
+    tamagochi.energia -= 1;
+    tamagochi.felicidad -= 1;
+
+    ESTADOS.src = "ducha.jpg";
+
+    if (tamagochi.energia <= 0) {
+
+        tamagochi.energia = 0;
+
+        ESTADOS.src = "muerto.jpg";
+
+        DES1.disabled = true;
+        DES2.disabled = true;
+        DES3.disabled = true;
+        DES4.disabled = true;
+        DES5.disabled = true;
+        DES6.disabled = true;
+        DES7.disabled = true;
+    }
+
+    if (tamagochi.felicidad <= 0) {
+
+        tamagochi.felicidad = 0;
+
+        ESTADOS.src = "muerto.jpg";
+
+        DES1.disabled = true;
+        DES2.disabled = true;
+        DES3.disabled = true;
+        DES4.disabled = true;
+        DES5.disabled = true;
+        DES6.disabled = true;
+        DES7.disabled = true;
+    }
+
+    if (tamagochi.limpieza >= 10) {
+
+        tamagochi.limpieza = 10;
+    }
+
+    LIMPIEZA.innerHTML = "Limpieza:" + "🧼".repeat(tamagochi.limpieza);
+    ENERGIA.innerHTML = "Energia:" + "⚡".repeat(tamagochi.energia);
+    FELICIDAD.innerHTML = "Felicidad:" + "😄".repeat(tamagochi.felicidad);
+
+}
+
+
+// ======================
+// ALIMENTAR
+// ======================
+
+function alimentar() {
+
+    tamagochi.salud += 2;
+    tamagochi.energia += 1;
+    tamagochi.peso += 1;
+
+    ESTADOS.src = "comiendo.png";
+
+    if (tamagochi.energia >= 10) {
+
+        tamagochi.energia = 10;
+    }
+
+    if (tamagochi.salud >= 10) {
+
+        tamagochi.salud = 10;
+    }
+
+    if (tamagochi.peso >= 10) {
+
+        tamagochi.peso = 10;
+    }
+
+    if (tamagochi.peso === 5) {
+
+        ESTADOS.src = "semigordo.png";
+    }
+
+    if (tamagochi.peso === 10) {
+
+        ESTADOS.src = "gordo.webp";
+    }
+
+    SALUD.innerHTML = "Salud:" + "❤️".repeat(tamagochi.salud);
+    ENERGIA.innerHTML = "Energia:" + "⚡".repeat(tamagochi.energia);
+    PESO.innerHTML = "Peso:" + "🍔".repeat(tamagochi.peso);
+
+}
+
+
+// ======================
+// JUGAR
+// ======================
+
+function jugar() {
+
+    tamagochi.limpieza -= 2;
+    tamagochi.energia -= 1;
+
+    ESTADOS.src = "jugando.png";
+
+    if (tamagochi.energia <= 0) {
+
+        tamagochi.energia = 0;
+
+        ESTADOS.src = "muerto.jpg";
+
+        DES1.disabled = true;
+        DES2.disabled = true;
+        DES3.disabled = true;
+        DES4.disabled = true;
+        DES5.disabled = true;
+        DES6.disabled = true;
+        DES7.disabled = true;
+    }
+
+    if (tamagochi.limpieza <= 0) {
+
+        tamagochi.limpieza = 0;
+
+        ESTADOS.src = "muerto.jpg";
+
+        DES1.disabled = true;
+        DES2.disabled = true;
+        DES3.disabled = true;
+        DES4.disabled = true;
+        DES5.disabled = true;
+        DES6.disabled = true;
+        DES7.disabled = true;
+    }
+
+    LIMPIEZA.innerHTML = "Limpieza:" + "🧼".repeat(tamagochi.limpieza);
+    ENERGIA.innerHTML = "Energia:" + "⚡".repeat(tamagochi.energia);
+
+}
+
+
+// ======================
+// DORMIR
+// ======================
+
+function dormir() {
+
+    tamagochi.energia += 1;
+    tamagochi.felicidad -= 1;
+
+    ESTADOS.src = "dormir.jpg";
+
+    if (tamagochi.energia >= 10) {
+
+        tamagochi.energia = 10;
+    }
+
+    if (tamagochi.felicidad <= 0) {
+
+        tamagochi.felicidad = 0;
+
+        ESTADOS.src = "muerto.jpg";
+
+        DES1.disabled = true;
+        DES2.disabled = true;
+        DES3.disabled = true;
+        DES4.disabled = true;
+        DES5.disabled = true;
+        DES6.disabled = true;
+        DES7.disabled = true;
+    }
+
+    ENERGIA.innerHTML = "Energia:" + "⚡".repeat(tamagochi.energia);
+    FELICIDAD.innerHTML = "Felicidad:" + "😄".repeat(tamagochi.felicidad);
+
+}
+
+
+// ======================
+// REPRENDER
+// ======================
+
+function reprender() {
+
+    tamagochi.salud -= 2;
+
+    ESTADOS.src = "reprender.png";
+
+    if (tamagochi.salud <= 0) {
+
+        tamagochi.salud = 0;
+
+        ESTADOS.src = "muerto.jpg";
+
+        DES1.disabled = true;
+        DES2.disabled = true;
+        DES3.disabled = true;
+        DES4.disabled = true;
+        DES5.disabled = true;
+        DES6.disabled = true;
+        DES7.disabled = true;
+    }
+
+    SALUD.innerHTML = "Salud:" + "❤️".repeat(tamagochi.salud);
+
+}
+
+
+// ======================
+// ACARICIAR
+// ======================
+
+function acariciar() {
+
+    tamagochi.felicidad += 1;
+
+    ESTADOS.src = "acariciar.png";
+
+    if (tamagochi.felicidad >= 10) {
+
+        tamagochi.felicidad = 10;
+    }
+
+    FELICIDAD.innerHTML = "Felicidad:" + "😄".repeat(tamagochi.felicidad);
+
+}
+
+
+// ======================
+// EJERCICIO
+// ======================
+
+function ejercicio() {
+
+    tamagochi.peso -= 1;
+    tamagochi.limpieza -= 1;
+    tamagochi.energia -= 2;
+
+    ESTADOS.src = "casimu.png";
+
+    if (tamagochi.energia <= 0) {
+
+        tamagochi.energia = 0;
+
+        ESTADOS.src = "muerto.jpg";
+
+        DES1.disabled = true;
+        DES2.disabled = true;
+        DES3.disabled = true;
+        DES4.disabled = true;
+        DES5.disabled = true;
+        DES6.disabled = true;
+        DES7.disabled = true;
+    }
+
+    if (tamagochi.peso <= 0) {
+
+        tamagochi.peso = 0;
+
+        ESTADOS.src = "muerto.jpg";
+
+        DES1.disabled = true;
+        DES2.disabled = true;
+        DES3.disabled = true;
+        DES4.disabled = true;
+        DES5.disabled = true;
+        DES6.disabled = true;
+        DES7.disabled = true;
+    }
+
+    if (tamagochi.limpieza <= 0) {
+
+        tamagochi.limpieza = 0;
+
+        ESTADOS.src = "muerto.jpg";
+
+        DES1.disabled = true;
+        DES2.disabled = true;
+        DES3.disabled = true;
+        DES4.disabled = true;
+        DES5.disabled = true;
+        DES6.disabled = true;
+        DES7.disabled = true;
+    }
+
+    PESO.innerHTML = "Peso:" + "🍔".repeat(tamagochi.peso);
+    LIMPIEZA.innerHTML = "Limpieza:" + "🧼".repeat(tamagochi.limpieza);
+    ENERGIA.innerHTML = "Energia:" + "⚡".repeat(tamagochi.energia);
+
+}
+
+
+// ======================
+// VOLVER A JUGAR
+// ======================
+
+function volver() {
+
+    ESTADOS.src = "Gumball_Watterson.svg.png";
+
+    tamagochi.felicidad = 10;
+    tamagochi.salud = 8;
+    tamagochi.limpieza = 9;
+    tamagochi.energia = 5;
+    tamagochi.peso = 2;
+
+    FELICIDAD.innerHTML = "Felicidad:" + "😄".repeat(tamagochi.felicidad);
+    SALUD.innerHTML = "Salud:" + "❤️".repeat(tamagochi.salud);
+    LIMPIEZA.innerHTML = "Limpieza:" + "🧼".repeat(tamagochi.limpieza);
+    ENERGIA.innerHTML = "Energia:" + "⚡".repeat(tamagochi.energia);
+    PESO.innerHTML = "Peso:" + "🍔".repeat(tamagochi.peso);
+
+    DES1.disabled = false;
+    DES2.disabled = false;
+    DES3.disabled = false;
+    DES4.disabled = false;
+    DES5.disabled = false;
+    DES6.disabled = false;
+    DES7.disabled = false;
+}
+
+</script>
+</body>
+</html>

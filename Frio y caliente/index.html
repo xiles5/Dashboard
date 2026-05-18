@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frio y caliente</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="text-center w-6/12 mx-auto" >
+    <form onsubmit="revisar(event) " class="pt-80">
+    <p>
+    <label for="pedir" >Escribe un numero entre 1 y 500:</label>
+    <input type="number" class="border" min="1" max="500" required id="pedir">
+    </p >
+    <p class="pt-6 ">
+    <button id="ocultar" type="submit" class="disabled:bg-amber-800 hover:bg-blue-600 border bg-green-500 text-white p-5">Adivinar</button>
+     <button type="button" class="hover:bg-blue-600 border bg-green-500 p-5 text-white" onclick="pedirnum()" >Numero en consola</button>
+    </p>
+    <p id="resultado" class="p-6 text-5xl"></p>
+    </form >
+    <script>
+       const PEDIR = document.getElementById("pedir");
+  const FONDO = document.body;
+const RESULTADO = document.getElementById("resultado");
+const OCULTAR = document.getElementById("ocultar");
+ let random = Math.floor( Math.random()*500);
+ 
+  function pedirnum(){
+
+console.log(random);
+  }
+  function revisar(e){
+   let pedir = parseInt(PEDIR.value);
+ e.preventDefault(); // no recarga la pagina
+      alert(parseInt(pedir));
+      if(random === pedir){
+
+           FONDO.classList.remove("bg-blue-900", "text-white");
+FONDO.classList.remove("bg-yellow-300" , "text-white");
+FONDO.classList.remove ("bg-red-700", "text-white"); 
+FONDO.classList.add ("bg-green-700", "text-white");
+RESULTADO.innerHTML = " 🏆 Acertaste 🏆";
+OCULTAR.disabled = true;
+
+      }
+     
+      //caliente
+       else if (random +1 < pedir &&  random +14 > pedir){ 
+
+RESULTADO.innerHTML = "Caliente,Caliente: Tu numero es mas grande que el mio";
+FONDO.classList.remove("bg-blue-900", "text-white");
+FONDO.classList.remove("bg-yellow-300" , "text-white");
+FONDO.classList.add ("bg-red-700", "text-white");
+
+      }else if (random -1 > pedir && random -14  < pedir){
+RESULTADO.innerHTML = "Caliente,Caliente: Tu numero es mas pequeño que el mio";
+FONDO.classList.remove("bg-blue-900", "text-white");
+FONDO.classList.remove("bg-yellow-300" , "text-white");
+FONDO.classList.add("bg-red-700", "text-white");
+
+      }
+      //Tibio
+      else if (random+49 > pedir &&  random+15 < pedir){
+
+RESULTADO.innerHTML = "Tibio,Tibio: Tu numero es mas grande que el mio";
+FONDO.classList.remove("bg-blue-900", "text-white");
+FONDO.classList.remove("bg-red-700", "text-white");
+FONDO.classList.add("bg-yellow-300" , "text-white");
+      }else if (random-50 > pedir && random -15< pedir ){
+RESULTADO.innerHTML = "Tibio,Tibio: Tu numero es mas pequeño que el mio";
+FONDO.classList.remove("bg-blue-900", "text-white");
+FONDO.classList.remove("bg-red-700", "text-white");
+FONDO.classList.add("bg-yellow-300" , "text-white");
+       }//Frio
+     else if (random-50  > pedir ){
+
+RESULTADO.innerHTML = "Frio,Frio: Tu numero es mas grande que el mio";
+FONDO.classList.remove("bg-red-700", "text-white");
+FONDO.classList.remove("bg-yellow-300" , "text-white");
+FONDO.classList.add("bg-blue-900" , "text-white");
+      }else if (random+50 < pedir ){
+RESULTADO.innerHTML = "Frio,Frio: Tu numero es mas pequeño que el mio";
+FONDO.classList.remove("bg-red-700", "text-white");
+FONDO.classList.remove("bg-yellow-300" , "text-white");
+FONDO.classList.add ("bg-blue-900", "text-white");
+      }
+      
+  }
+
+
+    </script>
+</body>
+</html>

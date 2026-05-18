@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5.2</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-cyan-900 text-white p-4">
+
+  <div class="bg-black w-full max-w-md sm:max-w-lg md:max-w-xl p-6 sm:p-10 rounded-3xl text-center">
+
+    <p class="text-sm sm:text-base md:text-lg leading-relaxed whitespace-pre-line">
+Ana  
+Oswaldo  
+Raúl  
+Celia  
+María  
+Antonio
+    </p>
+
+    <button
+      class="bg-blue-500 text-white p-3 mt-6 rounded-lg w-full sm:w-auto"
+      type="button"
+      onclick="resultado()">
+      Concursar
+    </button>
+
+    <p id="resulta" class="mt-6 break-words text-sm sm:text-base"></p>
+
+  </div>
+
+  <script>
+    const RESULTA = document.getElementById("resulta");
+
+    const clasificaciones = [
+      "Ana",
+      "Oswaldo",
+      "Raúl",
+      "Celia",
+      "María",
+      "Antonio"
+    ];
+
+    function resultado() {
+      clasificaciones.splice(2, 0, "Celia");
+      clasificaciones.splice(4, 1);
+      clasificaciones.pop();
+      clasificaciones.splice(1, 0, "Roberto", "Amaya");
+      clasificaciones.unshift("Marta");
+
+      RESULTA.innerHTML = clasificaciones.join("<br>");
+      alert("clasificacion actualizada");
+    }
+  </script>
+
+</body>
+</html>

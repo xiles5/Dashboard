@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    /* layer base: estilos globales y "reseteo" de etiquetas HTML puras */
+    /* Permite definir cómo se ve la web "por defecto" antes de empezar a poner clases. */
+
+    @layer base {
+      /* Agregar estilo de párrafo para todo el documento */
+     
+      
+       button{
+@apply border bg-blue-500 text-white p-3 mt-4;
+
+    }
+  input{
+@apply border;
+
+    }
+      body{
+       
+@apply mx-auto w-6/12 text-center bg-cyan-900 mt-40 text-white;
+
+    }
+    }
+   
+    /* @layer components: Se usa para crear clases complejas reutilizables */
+    /* Se usa cuando se está repitiendo EXACTAMENTE las mismas 10 clases en muchos componentes (por ejemplo botones), para crear una clase propia. */
+
+    @layer components {
+      .btn-principal {
+        @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition;
+      }
+    }
+
+    /* @layer utilities: 
+    Es la capa de clases de un solo propósito y máxima prioridad, incluso por encima de lo que diga la capa base o de componentes. */
+
+    @layer utilities {
+      .rotate-45-extra {
+        transform: rotate(45deg);
+      }
+    }
+
+  </style>
+</head>
+<body ><div class="bg-black p-10 rounded-3xl">
+    
+    <h1>formulario</h1>
+    <p>  <label for="numerouno">escribe un numero entero</label>
+         <input type="number"  id="numerouno">
+        </p> 
+    <p><label for="numerodos">escribe otro numero entero</label> 
+        <input type="number"  id="numerodos">
+    </p>
+    <button type="button" onclick="resultado()">resultado</button>
+    <p id="suma"></p>
+    
+
+<h1>Promedio</h1>
+<p><label for="numeuno">introduce un numero</label>
+    <input type="number" id="numeuno">
+</p>
+<p><label for="numedos">introduce un segundo numero</label>
+    <input type="number" id="numedos">
+</p>
+<p><label for="numetres">introduce un tercer numero</label>
+    <input type="number" id="numetres">
+</p>
+<p><button type="button" onclick="promedio()">promedio</button></p>
+<p id="resultado"></p>
+<h1>Multiplicacion </h1>
+<p><label for="number1">introduce un numero</label>
+    <input type="number" id="number1">
+</p>
+<p><button type="button" onclick="multiplicacion()">Multiplica</button></p>
+<p id="multipli"></p>
+<h1>Pintura </h1>
+<p><label for="number1.1">introduce el alto</label>
+    <input type="number" id="number1.1">
+</p>
+<p><label for="number1.2">introduce el ancho</label>
+    <input type="number" id="number1.2">
+</p>
+<p><label for="number1.3">Manos de pintura a aplicar</label>
+    <input type="number" id="number1.3">
+</p>
+<p><button type="button" onclick="pintura()">litro a usar</button></p>
+<p id="respintura"></p>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

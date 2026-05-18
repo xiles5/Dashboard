@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practicar número random</title>
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="mx-auto w-6/12 text-center bg-cyan-900 mt-40 text-white">
+       <div class="bg-black p-10 rounded-3xl " >
+<h1 class="text-4xl">Practicar número random</h1>
+<div class="flex justify-center mt-10">
+<img  id="dado" src="dado1.png" alt="">
+</div>
+<button class="border  bg-blue-500 text-white p-3 mt-4" id="girar" type="button" onclick="girarlo()">Girar dado</button>
+<p id="resultado"></p></div>
+    <script>
+
+const CAMBIO = document.getElementById("dado");
+const RESULTADO = document.getElementById("resultado");
+
+function girarlo(){
+    let entre = 6;
+    let numRandom = Math.ceil(Math.random() * entre  );
+    CAMBIO.src = "dado"+numRandom+".png";
+    RESULTADO.innerHTML = ` tu resultado es ${numRandom} `;
+  console.log(numRandom);
+}
+    
+    </script>
+</body>
+</html>

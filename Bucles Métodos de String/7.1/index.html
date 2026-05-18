@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.1</title>
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+@import "tailwindcss";
+
+@layer base {
+
+  body {
+    @apply min-h-screen bg-cyan-900 text-white p-4 md:p-8 flex items-start md:items-center justify-center;
+  }
+
+  h1 {
+    @apply text-3xl md:text-5xl font-bold mb-6 text-center;
+  }
+
+  h2 {
+    @apply text-xl md:text-2xl text-center mb-8;
+  }
+
+  img {
+    @apply w-full max-w-md h-auto object-cover rounded-xl border-4 border-white shadow-lg;
+  }
+
+  button {
+    @apply bg-blue-500 hover:bg-blue-600 disabled:bg-amber-600 text-white px-4 py-2 rounded-lg shadow transition ;
+  }
+ input{
+    @apply border mr-4;
+ }
+  p {
+    @apply text-base md:text-lg mb-2 text-white;
+  }
+
+  a {
+    @apply block hover:bg-cyan-800 hover:p-2 rounded-md transition;
+  }
+
+  summary {
+    @apply bg-white text-black rounded-lg p-3 cursor-pointer font-bold;
+  }
+
+  details {
+    @apply mb-4;
+  }
+}
+
+
+@layer components {
+
+  .card {
+    @apply border border-cyan-700 rounded-2xl p-4 md:p-6 w-full;
+  }
+
+  .contenedor {
+    @apply flex flex-col lg:flex-row gap-6 bg-black rounded-2xl p-4 md:p-10 w-full max-w-7xl mx-auto;
+  }
+
+ 
+  .app-box {
+    @apply bg-black w-full max-w-md md:max-w-xl lg:max-w-2xl p-6 md:p-10 rounded-3xl text-center;
+  }
+
+
+  .btn-group {
+    @apply flex flex-col sm:flex-row gap-3 mt-4;
+  }
+
+ 
+  .input {
+    @apply border w-full text-black p-2 rounded;
+  }
+}
+
+@layer utilities {
+
+  .rotate-45-extra {
+    transform: rotate(45deg);
+  }
+
+}
+
+</style>
+</head>
+<body>
+    <div class="bg-black p-28 rounded-md">
+    <label for="numero1"></label>
+    <input type="number" id="numero1" placeholder="introduce un numero">
+    <label for="numero2"></label>
+    <input type="number" id="numero2" placeholder="introduce otro numero">
+
+    <button type="button" onclick="sumacon()">RESULTADO</button>
+    <p id="resultado"></p>
+    </div>
+    <script>
+const NUMERO1 = document.getElementById("numero1");
+const NUMERO2 = document.getElementById("numero2");
+const RESULTADO = document.getElementById("resultado");
+
+function sumacon(){
+
+    let numero1 = parseInt(NUMERO1.value);
+    let numero2 = parseInt(NUMERO2.value);
+
+    let suma = 0;
+
+    let operacion = "";
+
+    for(let i = numero1; i <= numero2; i++){
+
+        suma += i;
+
+        operacion += i;
+
+        if(i < numero2){
+            operacion += " + ";
+        }
+    }
+
+    RESULTADO.innerHTML =
+    operacion + " = " + suma;
+}
+
+    </script>
+</body>
+</html>

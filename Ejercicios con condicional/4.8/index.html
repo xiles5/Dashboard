@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.8</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    /* layer base: estilos globales y "reseteo" de etiquetas HTML puras */
+    /* Permite definir cómo se ve la web "por defecto" antes de empezar a poner clases. */
+
+    @layer base {
+      /* Agregar estilo de párrafo para todo el documento */
+     
+      
+       button{
+@apply border bg-blue-500 text-white p-3 mt-4;
+
+    }
+  input{
+@apply border;
+
+    }
+      body{
+       
+@apply mx-auto w-6/12 text-center bg-cyan-900 mt-40 text-white;
+
+    }
+    }
+   
+    /* @layer components: Se usa para crear clases complejas reutilizables */
+    /* Se usa cuando se está repitiendo EXACTAMENTE las mismas 10 clases en muchos componentes (por ejemplo botones), para crear una clase propia. */
+
+    @layer components {
+      .btn-principal {
+        @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition;
+      }
+    }
+
+    /* @layer utilities: 
+    Es la capa de clases de un solo propósito y máxima prioridad, incluso por encima de lo que diga la capa base o de componentes. */
+
+    @layer utilities {
+      .rotate-45-extra {
+        transform: rotate(45deg);
+      }
+    }
+
+  </style>
+</head>
+<body><div class="bg-black p-10 rounded-3xl">
+    <h1>Jugar a piedra, papel o tijera:</h1>
+      <ol>
+        <li>👊Piedra</li>
+        <li>✋Papel</li>
+        <li>✌Tijera</li>
+      </ol>
+<p>
+    <label for="eleccion">Tu elección (1-3):</label>
+    <input type="number" id="eleccion" min="1" max="3">
+</p>
+<button type="button" onclick="resultado()">Resultado</button>
+
+<p id="resulta"></p>
+</div>
+
+<script>
+const ELECCION = document.getElementById("eleccion");
+const RESULTA = document.getElementById("resulta");
+const piepati = [
+    "",
+"👊 Piedra",
+"✋ Papel",
+"✌ Tijera",
+
+]
+
+function resultado(){
+    
+    let eleccion = parseInt(ELECCION.value);
+    let ramdo =Math.floor(Math.random() * 3  +1  );
+console.log(ramdo);
+if(eleccion > 3 || eleccion < 1 ){
+RESULTA.innerHTML =  `«Entiendo que no quieres jugar. Adiós» `;
+
+}
+else if(eleccion === ramdo ){
+    RESULTA.innerHTML =  piepati[eleccion]+` ` +piepati[ramdo]+` !Empate! `;
+}
+else if(eleccion === 1 &&  ramdo === 3){//piedra y tijera
+    RESULTA.innerHTML = `Yo ` +piepati[eleccion]+ ` y tu `+piepati[ramdo] + `¡He ganado!  `;
+}
+else if(eleccion === 1 &&  ramdo === 2){//piedra y papel
+    RESULTA.innerHTML = `Yo ` +piepati[eleccion]+ ` y tu `+piepati[ramdo] + `¡Haz ganado!  `;
+}
+else if( eleccion === 2 && ramdo === 1){//papel y piedra
+RESULTA.innerHTML = `Yo ` +piepati[eleccion]+ ` y tu `+piepati[ramdo] + `¡He ganado!  `;
+}
+else if(eleccion === 2 &&  ramdo === 3){//papel y tijera
+RESULTA.innerHTML = `Yo ` +piepati[eleccion]+ ` y tu `+piepati[ramdo] + `¡Haz ganado!  `;
+}else if(eleccion === 3 &&  ramdo === 1){//tijera y piedra
+RESULTA.innerHTML = `Yo ` +piepati[eleccion]+ ` y tu `+piepati[ramdo] + `¡Haz ganado!  `;
+
+}
+else if(eleccion === 3 &&  ramdo === 2){//tijera y papel
+RESULTA.innerHTML = `Yo` +piepati[eleccion]+ ` y tu `+piepati[ramdo] + `¡He ganado!  `;
+
+}
+}
+
+</script>
+</body>
+</html>

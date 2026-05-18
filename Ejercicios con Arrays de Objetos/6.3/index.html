@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.4</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+@import "tailwindcss";
+
+@layer base {
+
+  body {
+    @apply min-h-screen bg-cyan-900 text-white p-4 md:p-8 flex items-start md:items-center justify-center;
+  }
+
+  h1 {
+    @apply text-3xl md:text-5xl font-bold mb-6 text-center;
+  }
+
+  h2 {
+    @apply text-xl md:text-2xl text-center mb-8;
+  }
+
+  img {
+    @apply w-full max-w-md h-auto object-cover rounded-xl border-4 border-white shadow-lg;
+  }
+
+  button {
+    @apply bg-blue-500 hover:bg-blue-600 disabled:bg-amber-600 text-white px-4 py-2 rounded-lg shadow transition mb-6;
+  }
+
+  p {
+    @apply text-base md:text-lg mb-2;
+  }
+
+  a {
+    @apply block hover:bg-cyan-800 hover:p-2 rounded-md transition;
+  }
+
+  summary {
+    @apply bg-white text-black rounded-lg p-3 cursor-pointer font-bold;
+  }
+
+  details {
+    @apply mb-4;
+  }
+}
+
+
+@layer components {
+
+  .card {
+    @apply border border-cyan-700 rounded-2xl p-4 md:p-6 w-full;
+  }
+
+  .contenedor {
+    @apply flex flex-col lg:flex-row gap-6 bg-black rounded-2xl p-4 md:p-10 w-full max-w-7xl mx-auto;
+  }
+
+ 
+  .app-box {
+    @apply bg-black w-full max-w-md md:max-w-xl lg:max-w-2xl p-6 md:p-10 rounded-3xl text-center;
+  }
+
+
+  .btn-group {
+    @apply flex flex-col sm:flex-row gap-3 mt-4;
+  }
+
+ 
+  .input {
+    @apply border w-full text-black p-2 rounded;
+  }
+}
+
+@layer utilities {
+
+  .rotate-45-extra {
+    transform: rotate(45deg);
+  }
+
+}
+
+</style>
+</head>
+<body class="mx-auto w-6/12 text-center bg-cyan-900  text-white">
+      <div class="bg-black p-10 rounded-3xl">
+    <p>
+        <label for="anadir">Añadir tarea:</label>
+        <input class="border " type="text" id="anadir">
+        <select  class="mb-6 mt-5 bg-blue-500" id="seleccionar">
+            <option >Urgente</option>
+            <option >Alta</option>
+            <option >Media</option>
+            <option >Baja</option>
+        
+        </select>
+        <input class="text-black bg-amber-50 mb-6" id="fecha" type="date">
+        
+    </p>
+    <button  type="button" type="button" id="desa" onclick="mastareas()">Agregar</button>
+     <button  type="button" type="button"  id="desa2" onclick="mostrar()">Mostrar</button>
+          <button  type="button" type="button" id="desa3" onclick="eliminar()">Eliminar</button>
+          <button  type="button" type="button" id="desa4" onclick="salir()">Salir de la aplicacion</button>
+    <p id="tareas"></p>
+    </div>
+
+
+<script>
+const ANADIR = document.getElementById("anadir");
+const TAREAS = document.getElementById("tareas");
+let arraytareas = [];
+let mas = 0;
+const DESA = document.getElementById("desa");
+const DESA2 = document.getElementById("desa2");
+const DESA3 = document.getElementById("desa3");
+const DESA4 = document.getElementById("desa4");
+const SELECCIONAR = document.getElementById("seleccionar");
+const FECHA = document.getElementById("fecha");
+
+function mastareas(){
+
+let nuevaTarea = {
+    tarea: ANADIR.value,
+    importancia: SELECCIONAR.value,
+    fechaTope: FECHA.value
+  };
+
+  arraytareas.push(nuevaTarea);
+console.log(arraytareas);
+}
+function mostrar(){
+
+TAREAS.innerHTML +=mas+"."+ arraytareas[0].tarea +" "+ arraytareas[0].importancia +" "+ arraytareas[0].fechaTope+ "<br>" ;
+mas++;  
+}
+
+function eliminar(){
+
+  let eliminar = parseInt(ANADIR.value);
+
+  if(eliminar >= 0 && eliminar < arraytareas.length){
+    arraytareas.splice(eliminar, 1);
+  }
+
+  TAREAS.innerHTML = "";
+
+  for(let i = 0; i < arraytareas.length; i++){
+    TAREAS.innerHTML += i + ". " + arraytareas[i] + "<br>";
+  }
+}
+function salir(){
+alert ("Gracias");
+DESA.disabled = true;
+DESA2.disabled = true;
+DESA3.disabled = true;
+DESA4.disabled = true;
+
+}
+
+
+
+
+</script>
+
+
+
+
+</body>
+
+
+
+
+
+</html>

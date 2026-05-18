@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.7</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    /* layer base: estilos globales y "reseteo" de etiquetas HTML puras */
+    /* Permite definir cómo se ve la web "por defecto" antes de empezar a poner clases. */
+
+    @layer base {
+      /* Agregar estilo de párrafo para todo el documento */
+     
+      
+       button{
+@apply border bg-blue-500 text-white p-3 mt-4;
+
+    }
+  input{
+@apply border;
+
+    }
+      body{
+       
+@apply mx-auto w-6/12 text-center bg-cyan-900 mt-40 text-white;
+
+    }
+    }
+   
+    /* @layer components: Se usa para crear clases complejas reutilizables */
+    /* Se usa cuando se está repitiendo EXACTAMENTE las mismas 10 clases en muchos componentes (por ejemplo botones), para crear una clase propia. */
+
+    @layer components {
+      .btn-principal {
+        @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition;
+      }
+    }
+
+    /* @layer utilities: 
+    Es la capa de clases de un solo propósito y máxima prioridad, incluso por encima de lo que diga la capa base o de componentes. */
+
+    @layer utilities {
+      .rotate-45-extra {
+        transform: rotate(45deg);
+      }
+    }
+
+  </style>
+</head>
+<body><div class="bg-black p-10 rounded-3xl">
+       <p>
+        <label for="dividendo">Dividendo:</label>
+        <input type="number"  id="dividendo">
+       </p>
+       <p>
+        <label for="divisor">Divisor numero entre 2 y 7:</label>
+        <input type="number"  id="divisor" min="2" max="7">
+       </p>
+<button type="button" onclick="resultado()">Resultado</button>
+<p id="resulta"></p>
+</div>
+
+<script>
+    const DIVIDENDO = document.getElementById("dividendo");
+     const DIVISOR = document.getElementById("divisor");
+    const RESULTADO = document.getElementById("resulta");
+
+   function resultado(){
+let dividendo = parseInt(DIVIDENDO.value);
+  let divisor = parseInt(DIVISOR.value);
+ let multiplo = dividendo % divisor;
+
+ 
+     if(divisor >=2 && divisor <= 7 && multiplo === 0 ){
+      RESULTADO.innerHTML = dividendo +` Es multiplo de ` + divisor;
+
+     }else{
+
+      RESULTADO.innerHTML = `Escoger un numero de divisor que sea del 2 al 7 ` ;
+     }
+ }
+
+</script>
+</body>
+</html>
