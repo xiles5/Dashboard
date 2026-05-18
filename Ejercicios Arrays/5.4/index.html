@@ -27,7 +27,7 @@
   }
 
   button {
-    @apply bg-blue-500 hover:bg-blue-600 disabled:bg-amber-600 text-white px-4 py-2 rounded-lg shadow transition;
+    @apply mb-8 bg-blue-500 hover:bg-blue-600 disabled:bg-amber-600 text-white  px-4 py-2 rounded-lg shadow transition;
   }
 
   p {
@@ -47,7 +47,7 @@
   }
 }
 
-/* 🔥 AÑADIDO RESPONSIVE PRINCIPAL */
+
 @layer components {
 
   .card {
@@ -58,17 +58,17 @@
     @apply flex flex-col lg:flex-row gap-6 bg-black rounded-2xl p-4 md:p-10 w-full max-w-7xl mx-auto;
   }
 
-  /* NUEVO: contenedor de app móvil */
+
   .app-box {
     @apply bg-black w-full max-w-md md:max-w-xl lg:max-w-2xl p-6 md:p-10 rounded-3xl text-center;
   }
 
-  /* NUEVO: botones responsivos */
+
   .btn-group {
     @apply flex flex-col sm:flex-row gap-3 mt-4;
   }
 
-  /* NUEVO: input bonito */
+ 
   .input {
     @apply border w-full text-black p-2 rounded;
   }
@@ -90,10 +90,10 @@
         <label for="anadir">Añadir tarea:</label>
         <input class="border " type="text" id="anadir">
     </p>
-    <button  type="button" type="button" id="desa" onclick="mastareas()">Agregar</button>
-     <button  type="button" type="button"  id="desa2" onclick="mostrar()">Mostrar</button>
-          <button  type="button" type="button" id="desa3" onclick="eliminar()">Eliminar</button>
-          <button  type="button" type="button" id="desa4" onclick="salir()">Salir de la aplicacion</button>
+    <button  type="button" id="desa" onclick="mastareas()">Agregar</button>
+     <button  type="button"  id="desa2" onclick="mostrar()">Mostrar</button>
+          <button  type="button" id="desa3" onclick="eliminar()">Eliminar</button>
+          <button  type="button" id="desa4" onclick="salir()">Salir de la aplicacion</button>
     <p id="tareas"></p>
     </div>
 
