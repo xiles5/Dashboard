@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.2</title>
+</head>
+<body>
+        <div class="bg-black text-white p-30 rounded-md">
+    <label for="numero1">Introduce un numero:</label>
+    <input type="text" class="border"  required id="numero1" >
+      <button type="button" class="m-4" onclick="resuelto()">RESULTADO</button>
+    
+<div class="resultado-box">
+<p id="resultado"></p>
+</div>
+<script>
+NUMERO1 = document.getElementById("numero1");
+RESULTADO = document.getElementById("resultado");
+
+function resuelto(){
+    const posicion= "TRWAGMYFPDXBNJZSQVHLCKE";
+let dni = NUMERO1.value;
+ let letraDni =   toupperCase(dni.slice(8,8));
+let numeroDni =  parseInt( dni.slice(0,7));
+let modulo = numeroDni % 23;
+if (letraDni === posicion[modulo]){
+
+RESULTADO.innerHTML = "Tu dni es correcto";
+
+}else{
+    RESULTADO.innerHTML = "Tu dni es incorrecto";
+}
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.1</title>
+</head>
+<body>
+   
+     <div class="bg-black text-white p-30 rounded-md">
+    <label for="numero1">Introduce un numero:</label>
+    <input type="number" class="border" min="2" max="100" required id="numero1" >
+      <button type="button" class="m-4" onclick="resuelto()">RESULTADO</button>
+    
+<div class="resultado-box">
+<p id="resultado"></p>
+</div>
+    <script>
+NUMERO1 = document.getElementById("numero1");
+RESULTADO = document.getElementById("resultado");
+
+function modulo(numero1){
+
+
+let divisor = 2;
+
+let esPrimo = true;
+
+while(divisor < numero1){
+
+    if(numero1 % divisor === 0){
+
+        esPrimo = false;
+
+        RESULTADO.innerHTML =
+        "El numero " + numero1 +
+        " no es primo. Es divisible por " +
+        divisor;
+    }
+
+    divisor++;
+}
+
+if(esPrimo){
+
+    RESULTADO.innerHTML =
+    "El numero " + numero1 +
+    " es primo. No tiene divisores.";
+}
+}
+function resuelto(){
+modulo(Number(NUMERO1.value));
+
+
+
+}
+
+
+    </script>
+
+
+</body>
+</html>
